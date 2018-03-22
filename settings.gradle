@@ -1,0 +1,9 @@
+rootProject.name = 'hcmb-game'
+include 'server'
+include 'server:server-ear'
+findProject(':server:server-ear')?.name = 'server-ear'
+include 'server:server-war'
+findProject(':server:server-war')?.name = 'server-war'
+include 'server:server-ejb'
+findProject(':server:server-ejb')?.name = 'server-ejb'
+
