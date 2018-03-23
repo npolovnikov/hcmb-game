@@ -15,32 +15,21 @@ public class Player {
 
     //GK
     //Reflex
-    private int angles;
-    private int breakaway;
-    private int fiveHole;
-    private int glove;
-    private int stick;
-    //Athletics
-//    private int aggressiveness;
-//    private int agility;
-//    private int durability;
-//    private int endurance;
-//    private int speed;
-    private int vision;
+    private int angles;                 //Углы
+    private int breakaway;              //1 на 1
+    private int glove;                  //Работа ловушкой
+    private int stick;                  //Работа клюшкой
+
     //Pick Control
-//    private int passing;
-//    private int poise;
-    private int pokeCkech;
-    private int puckPlayingFreq;
-    private int reboundControl;
-    private int recover;
+    private int pokeCkech;              //Выбивание шайбы
+    private int reboundControl;         //Контроль отскока
+    private int recover;                //Восстановление
 
     //Player
     // PuckSkills
-    private int deking;
-    private int handEye;
-    private int passing;
-    private int puckControl;
+    private int handEye;                //Виденье
+    private int passing;                //Пасы
+    private int puckControl;            //Контроль шайбы
     // Shooting
     private int stapShotAccuracy;       //точность броска
     private int stapShotPower;          //сила броска
@@ -64,7 +53,7 @@ public class Player {
     //Physical
     private int aggressiveness;         //агрессивность
     private int bodyChecking;           //силовой прием
-    private int durability;             //порчность
+    private int durability;             //стойкость
     private int fightingSkill;          //боевой навык
     private int strength;               //Сила
 
