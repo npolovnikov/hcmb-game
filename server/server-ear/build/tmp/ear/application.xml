@@ -4,11 +4,11 @@
   <display-name>Hockey Mobile Server Ear</display-name>
   <initialize-in-order>true</initialize-in-order>
   <module>
-    <java>server-ear.jar</java>
+    <ejb>server-ejb-1.0-SNAPSHOT.jar</ejb>
   </module>
   <module>
     <web>
-      <web-uri>server-wae.war</web-uri>
+      <web-uri>server-war-1.0-SNAPSHOT.war</web-uri>
       <context-root>/server</context-root>
     </web>
   </module>
