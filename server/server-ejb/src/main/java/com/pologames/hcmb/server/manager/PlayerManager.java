@@ -2,9 +2,13 @@ package com.pologames.hcmb.server.manager;
 
 import com.pologames.hcmb.server.entity.Player;
 import com.pologames.hcmb.server.pojo.PositionEnum;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.ejb.Local;
 import javax.ejb.Stateless;
+
+import static com.pologames.hcmb.server.pojo.PlayerUtils.*;
 
 /**
  * Класс для управления игроками
@@ -12,11 +16,15 @@ import javax.ejb.Stateless;
 @Stateless
 @Local
 public class PlayerManager {
+    private final static Logger LOG = LoggerFactory.getLogger(PlayerManager.class);
 
     public Player createRandomPlayer(int minOvr, int maxOvr) {
-        final PositionEnum positionEnum = PositionEnum.random();
+        LOG.info("createRandomPlayer: start. min = {}, max = {}", minOvr, maxOvr);
+        final PositionEnum positionEnum = PositionEnum.G;
+        LOG.info("Position: {}", positionEnum);
+
         final Player player;
-        switch (positionEnum){
+        switch (positionEnum) {
             case G: player = createRandomG(minOvr, maxOvr); break;
             case D: player = createRandomD(minOvr, maxOvr); break;
             case L: player = createRandomL(minOvr, maxOvr); break;
@@ -24,31 +32,7 @@ public class PlayerManager {
             case C: player = createRandomC(minOvr, maxOvr); break;
             default: player = null;
         }
+        LOG.info("OVR: {}", player.getOvr());
         return player;
-    }
-
-    private Player createRandomG(int minOvr, int maxOvr) {
-        final Player playerG = new Player();
-        return playerG;
-    }
-
-    private Player createRandomD(int minOvr, int maxOvr) {
-        final Player playerD = new Player();
-        return playerD;
-    }
-
-    private Player createRandomR(int minOvr, int maxOvr) {
-        final Player playerR = new Player();
-        return playerR;
-    }
-
-    private Player createRandomL(int minOvr, int maxOvr) {
-        final Player playerL = new Player();
-        return playerL;
-    }
-
-    private Player createRandomC(int minOvr, int maxOvr) {
-        final Player playerC = new Player();
-        return playerC;
     }
 }

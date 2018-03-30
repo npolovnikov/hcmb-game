@@ -9,6 +9,6 @@ public enum PositionEnum {
     G, D, L, R, C;
 
     public static PositionEnum random() {
-        return values()[new Random().nextInt(values().length)];
+        return values()[new Random().nextInt(values().length - 1)];
     }
 }

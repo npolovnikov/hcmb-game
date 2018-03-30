@@ -1,5 +1,6 @@
 package com.pologames.hcmb.server.entity;
 
+import com.pologames.hcmb.server.pojo.PlayerUtils;
 import com.pologames.hcmb.server.pojo.PositionEnum;
 
 /**
@@ -486,10 +487,16 @@ public class Player {
         this.strength = strength;
     }
 
+    public int getOvr() {
+        return PlayerUtils.ovr(this);
+    }
+
+
     @Override
     public String toString() {
         return "Player{" +
-                "id=" + id +
+                "ovr=" + getOvr() +
+                ", id=" + id +
                 ", fullName='" + fullName + '\'' +
                 ", shortName='" + shortName + '\'' +
                 ", position=" + position +
