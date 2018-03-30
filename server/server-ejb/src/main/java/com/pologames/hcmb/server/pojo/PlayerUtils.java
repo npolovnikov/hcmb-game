@@ -9,6 +9,10 @@ public class PlayerUtils {
     public static int ovr(Player player) {
         switch (player.getPosition()) {
             case G: return ovrG(player);
+            case D: return ovrD(player);
+            case L:
+            case R:
+            case C: return ovrС(player);
         }
         return 0;
     }
@@ -69,23 +73,137 @@ public class PlayerUtils {
         return playerG;
     }
 
+    /**
+     * Генерация рандомного защитника
+     * @param minOvr
+     * @param maxOvr
+     * @return
+     */
     public static Player createRandomD(int minOvr, int maxOvr) {
         final Player playerD = new Player();
+        playerD.setPosition(PositionEnum.D);
+
+        //Главное для защитника
+        playerD.setAcceleration(randomInt(minOvr - 5, maxOvr + 5));
+        playerD.setAgility(randomInt(minOvr - 5, maxOvr + 5));
+        playerD.setBalance(randomInt(minOvr - 5, maxOvr + 5));
+        playerD.setEndurance(randomInt(minOvr - 5, maxOvr + 5));
+        playerD.setSpeed(randomInt(minOvr - 5, maxOvr + 5));
+
+        playerD.setDefAwareness(randomInt(minOvr - 5, maxOvr + 5));
+        playerD.setFaceOff(randomInt(minOvr - 5, maxOvr + 5));
+        playerD.setShotBlocking(randomInt(minOvr - 5, maxOvr + 5));
+        playerD.setStickChecking(randomInt(minOvr - 5, maxOvr + 5));
+
+        //Второстепенное для защитника
+        playerD.setStapShotAccuracy(randomInt(minOvr - 15, maxOvr + 15));
+        playerD.setStapShotPower(randomInt(minOvr - 15, maxOvr + 15));
+        playerD.setWristShotAccuracy(randomInt(minOvr - 15, maxOvr + 15));
+        playerD.setWristShotPower(randomInt(minOvr - 15, maxOvr + 15));
+
+        playerD.setDiscipline(randomInt(minOvr - 15, maxOvr + 15));
+        playerD.setOffAwareness(randomInt(minOvr - 15, maxOvr + 15));
+        playerD.setPoise(randomInt(minOvr - 15, maxOvr + 15));
+
+        playerD.setAggressiveness(randomInt(minOvr - 15, maxOvr + 15));
+        playerD.setBodyChecking(randomInt(minOvr - 15, maxOvr + 15));
+        playerD.setDurability(randomInt(minOvr - 15, maxOvr + 15));
+        playerD.setFightingSkill(randomInt(minOvr - 15, maxOvr + 15));
+        playerD.setStrength(randomInt(minOvr - 15, maxOvr + 15));
+
+        playerD.setHandEye(randomInt(minOvr - 15, maxOvr + 15));
+        playerD.setPassing(randomInt(minOvr - 15, maxOvr + 15));
+        playerD.setPuckControl(randomInt(minOvr - 15, maxOvr + 15));
+
+        //Ненужное для защитника
+        playerD.setAngles(randomInt(0, 70));
+        playerD.setBreakaway(randomInt(0, 70));
+        playerD.setGlove(randomInt(0, 70));
+        playerD.setStick(randomInt(0, 70));
+
+        playerD.setReboundControl(randomInt(0, 70));
+        playerD.setRecover(randomInt(0, 70));
+        playerD.setPokeCkech(randomInt(0, 70));
+
         return playerD;
     }
 
+    /**
+     * Генерация рандомного правого вингера
+     * @param minOvr
+     * @param maxOvr
+     * @return
+     */
     public static  Player createRandomR(int minOvr, int maxOvr) {
-        final Player playerR = new Player();
+        final Player playerR = createRandomC(minOvr, maxOvr);
+        playerR.setPosition(PositionEnum.R);
         return playerR;
     }
 
+    /**
+     * Генерация рандомного левого вингера
+     * @param minOvr
+     * @param maxOvr
+     * @return
+     */
     public static  Player createRandomL(int minOvr, int maxOvr) {
-        final Player playerL = new Player();
+        final Player playerL = createRandomC(minOvr, maxOvr);
+        playerL.setPosition(PositionEnum.L);
         return playerL;
     }
 
+    /**
+     * Генерация рандомного центр форварда
+     * @param minOvr
+     * @param maxOvr
+     * @return
+     */
     public static Player createRandomC(int minOvr, int maxOvr) {
         final Player playerC = new Player();
+        playerC.setPosition(PositionEnum.C);
+
+        //Главное для напа
+        playerC.setStapShotAccuracy(randomInt(minOvr - 5, maxOvr + 5));
+        playerC.setStapShotPower(randomInt(minOvr - 5, maxOvr + 5));
+        playerC.setWristShotAccuracy(randomInt(minOvr - 5, maxOvr + 5));
+        playerC.setWristShotPower(randomInt(minOvr - 5, maxOvr + 5));
+
+        playerC.setAcceleration(randomInt(minOvr - 5, maxOvr + 5));
+        playerC.setAgility(randomInt(minOvr - 5, maxOvr + 5));
+        playerC.setBalance(randomInt(minOvr - 5, maxOvr + 5));
+        playerC.setEndurance(randomInt(minOvr - 5, maxOvr + 5));
+        playerC.setSpeed(randomInt(minOvr - 5, maxOvr + 5));
+
+        //Второстепенное для напа
+        playerC.setDiscipline(randomInt(minOvr - 15, maxOvr + 15));
+        playerC.setOffAwareness(randomInt(minOvr - 15, maxOvr + 15));
+        playerC.setPoise(randomInt(minOvr - 15, maxOvr + 15));
+
+        playerC.setDefAwareness(randomInt(minOvr - 15, maxOvr + 15));
+        playerC.setFaceOff(randomInt(minOvr - 15, maxOvr + 15));
+        playerC.setShotBlocking(randomInt(minOvr - 15, maxOvr + 15));
+        playerC.setStickChecking(randomInt(minOvr - 15, maxOvr + 15));
+
+        playerC.setAggressiveness(randomInt(minOvr - 15, maxOvr + 15));
+        playerC.setBodyChecking(randomInt(minOvr - 15, maxOvr + 15));
+        playerC.setDurability(randomInt(minOvr - 15, maxOvr + 15));
+        playerC.setFightingSkill(randomInt(minOvr - 15, maxOvr + 15));
+        playerC.setStrength(randomInt(minOvr - 15, maxOvr + 15));
+
+        playerC.setHandEye(randomInt(minOvr - 15, maxOvr + 15));
+        playerC.setPassing(randomInt(minOvr - 15, maxOvr + 15));
+        playerC.setPuckControl(randomInt(minOvr - 15, maxOvr + 15));
+
+        //Ненужное для Напа
+        playerC.setAngles(randomInt(0, 70));
+        playerC.setBreakaway(randomInt(0, 70));
+        playerC.setGlove(randomInt(0, 70));
+        playerC.setStick(randomInt(0, 70));
+
+        playerC.setReboundControl(randomInt(0, 70));
+        playerC.setRecover(randomInt(0, 70));
+        playerC.setPokeCkech(randomInt(0, 70));
+
         return playerC;
     }
 
@@ -104,5 +222,33 @@ public class PlayerUtils {
         sum_2 *= 0.9;
 
         return ((sum_1 / 9) + (sum_2 / 13)) / 2;
+    }
+
+    private static int ovrD(Player player) {
+        int sum_1 = player.getAcceleration() + player.getAgility() + player.getBalance() + player.getEndurance() + player.getSpeed()
+                + player.getDefAwareness() + player.getFaceOff() + player.getShotBlocking() + player.getStickChecking();
+        sum_1 *= 1.1;
+
+        int sum_2 = player.getStapShotAccuracy() + player.getStapShotPower() + player.getWristShotAccuracy() + player.getWristShotPower()
+                + player.getDiscipline() + player.getOffAwareness() + player.getPoise() + player.getAggressiveness()
+                + player.getBodyChecking() + player.getDurability() + player.getFightingSkill() + player.getStrength()
+                + player.getHandEye() + player.getPassing() + player.getPuckControl();
+        sum_2 *= 0.9;
+
+        return ((sum_1 / 9) + (sum_2 / 15)) / 2;
+    }
+
+    private static int ovrС(Player player) {
+        int sum_1 = player.getStapShotAccuracy() + player.getStapShotPower() + player.getWristShotAccuracy() + player.getWristShotPower()
+                + player.getAcceleration() + player.getAgility() + player.getBalance() + player.getEndurance() + player.getSpeed();
+        sum_1 *= 1.1;
+
+        int sum_2 = player.getDefAwareness() + player.getFaceOff() + player.getShotBlocking() + player.getStickChecking() +
+                + player.getDiscipline() + player.getOffAwareness() + player.getPoise() + player.getAggressiveness()
+                + player.getBodyChecking() + player.getDurability() + player.getFightingSkill() + player.getStrength()
+                + player.getHandEye() + player.getPassing() + player.getPuckControl();
+        sum_2 *= 0.9;
+
+        return ((sum_1 / 9) + (sum_2 / 15)) / 2;
     }
 }
