@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(name = "TestServlet", urlPatterns = {"/test"}, loadOnStartup = 1)
-public class TestServlet extends HttpServlet {
+@WebServlet(name = "CreateTestServlet", urlPatterns = {"/create"}, loadOnStartup = 1)
+public class CreateTestServlet extends HttpServlet {
 
     private static final long START_TIME = System.currentTimeMillis();
 

@@ -12,10 +12,11 @@ repositories {
 }
 
 dependencies {
-    compile 'org.slf4j:slf4j-api:1.7.25'
-    compile 'javax:javaee-api:7.0'
-    compile 'org.hibernate:hibernate-core:5.2.16.Final'
-    compile 'org.hibernate:hibernate-validator:6.0.9.Final'
+    compileOnly 'org.slf4j:slf4j-api:1.7.25'
+
+    compileOnly 'javax:javaee-api:7.0'
+    compileOnly 'org.hibernate:hibernate-core:5.2.16.Final'
+    compileOnly 'org.hibernate:hibernate-validator:6.0.9.Final'
 
     testCompile 'org.slf4j:slf4j-log4j12:1.7.25'
     testCompile 'com.h2database:h2:1.4.197'

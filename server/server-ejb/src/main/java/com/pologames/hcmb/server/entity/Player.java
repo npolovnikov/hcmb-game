@@ -3,34 +3,43 @@ package com.pologames.hcmb.server.entity;
 import com.pologames.hcmb.server.pojo.PlayerUtils;
 import com.pologames.hcmb.server.pojo.PositionEnum;
 
+import javax.persistence.*;
+
 /**
  * Описание игрока
  */
+@Entity
 public class Player {
 
     /**
      * Идентификатор
      */
-    private long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
 
     /**
      * Полсное имя
      */
+    @Column
     private String fullName;
 
     /**
      * Короткое имя (на майке)
      */
+    @Column
     private String shortName;
 
     /**
      * Позиция
      */
+    @Column
     private PositionEnum position;
 
     /**
      * Талант
      */
+    @Column
     private int talent;
 
     //GK
@@ -38,37 +47,44 @@ public class Player {
     /**
      * Контроль углов
      */
+    @Column
     private int angles;
 
     /**
      * 1 на 1
      */
+    @Column
     private int breakaway;
 
     /**
      * Работа ловушкой
      */
+    @Column
     private int glove;
 
     /**
      * Работа клюшкой
      */
+    @Column
     private int stick;
 
     //Pick Control
     /**
      * Выбивание шайбы
      */
+    @Column
     private int pokeCkech;
 
     /**
      * Контроль отскока
      */
+    @Column
     private int reboundControl;
 
     /**
      * Восстановление
      */
+    @Column
     private int recover;
 
     //Player
@@ -76,79 +92,94 @@ public class Player {
     /**
      * Виденье
      */
+    @Column
     private int handEye;
 
     /**
      * Пасы
      */
+    @Column
     private int passing;
 
     /**
      * Контроль шайбы
      */
+    @Column
     private int puckControl;
 
     // Shooting
     /**
      * Точность броска
      */
+    @Column
     private int stapShotAccuracy;
 
     /**
      * Сила броска
      */
+    @Column
     private int stapShotPower;
 
     /**
      * Точность удара
      */
+    @Column
     private int wristShotAccuracy;
 
     /**
      * Сила удара
      */
+    @Column
     private int wristShotPower;
 
     //Skating
     /**
      * Ускорение
      */
+    @Column
     private int acceleration;
 
     /**
      * Ловкость
      */
+    @Column
     private int agility;
 
     /**
      * Балансировка
      */
+    @Column
     private int balance;
 
     /**
      * Выносливость
      */
+    @Column
     private int endurance;
 
     /**
      * Скорость
      */
+    @Column
     private int speed;
 
     //Senses
     /**
      * Дисциплина
      */
+    @Column
     private int discipline;
 
     /**
      * Осознаность
      */
+    @Column
     private int offAwareness;
 
     /**
      * Уравновешиность
      */
+    @Column
     private int poise;
 
 
@@ -156,54 +187,63 @@ public class Player {
     /**
      * Защита
      */
+    @Column
     private int defAwareness;
 
     /**
      * Вбрасывание
      */
+    @Column
     private int faceOff;
 
     /**
      * Перехват
      */
+    @Column
     private int shotBlocking;
 
     /**
      * Отбор
      */
+    @Column
     private int stickChecking;
 
     //Physical
     /**
      * Агрессивность
      */
+    @Column
     private int aggressiveness;
 
     /**
      * Силовой прием
      */
+    @Column
     private int bodyChecking;
 
     /**
      * Стойкость
      */
+    @Column
     private int durability;
 
     /**
      * Боевой навык
      */
+    @Column
     private int fightingSkill;
 
     /**
      * Сила
      */
+    @Column
     private int strength;
 
-    public long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

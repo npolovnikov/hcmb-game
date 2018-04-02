@@ -6,4 +6,7 @@ include 'server:server-war'
 findProject(':server:server-war')?.name = 'server-war'
 include 'server:server-ejb'
 findProject(':server:server-ejb')?.name = 'server-ejb'
+include 'prepare-distr'
+include 'prepare-distr:prepare-servers'
+findProject(':prepare-distr:prepare-servers')?.name = 'prepare-servers'
 

@@ -6,7 +6,7 @@
     <persistence-unit name="hcmb" transaction-type="JTA">
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 
-        <jta-data-source>java:jboss/datasources/DefaultDS</jta-data-source>
+        <jta-data-source>java:jboss/datasources/HockeyMobileDS</jta-data-source>
 
         <!-- Entity -->
         <class>com.pologames.hcmb.server.entity.Player</class>
@@ -21,9 +21,11 @@
             <property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect" />
             <property name="hibernate.connection.useUnicode" value="true" />
             <property name="hibernate.connection.characterEncoding" value="UTF-8" />
-            <property name="hibernate.hbm2ddl.auto" value="validate" />
+            <property name="hibernate.hbm2ddl.auto" value="update" />
             <property name="hibernate.show_sql" value="false" />
-            <property name="hibernate.cache.use_second_level_cache" value="true" />
+            <property name="hibernate.cache.use_second_level_cache" value="false" />
+
+            <!--<property name="javax.persistence.schema-generation.scripts.action" value="create"/>-->
         </properties>
     </persistence-unit>
 </persistence>

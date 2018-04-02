@@ -1,9 +1,6 @@
 ## Java
 
-*.class
-*.war
-*.ear
-*.jar
+/gradle/*
 hs_err_pid*
 
 ## Robovm

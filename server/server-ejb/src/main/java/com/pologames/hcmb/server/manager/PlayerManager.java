@@ -7,6 +7,12 @@ import org.slf4j.LoggerFactory;
 
 import javax.ejb.Local;
 import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
+import java.util.List;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 import static com.pologames.hcmb.server.pojo.PlayerUtils.*;
 
@@ -17,6 +23,9 @@ import static com.pologames.hcmb.server.pojo.PlayerUtils.*;
 @Local
 public class PlayerManager {
     private final static Logger LOG = LoggerFactory.getLogger(PlayerManager.class);
+
+    @PersistenceContext(unitName = "hcmb")
+    private EntityManager entityManager;
 
     public Player createRandomPlayer(int minOvr, int maxOvr) {
         LOG.info("createRandomPlayer: start. min = {}, max = {}", minOvr, maxOvr);
@@ -33,6 +42,17 @@ public class PlayerManager {
             default: player = null;
         }
         LOG.info("OVR: {}", player.getOvr());
+
+        entityManager.persist(player);
         return player;
+    }
+
+    public List<Player> getAllPlayers() {
+        final List<Player> players = entityManager.createQuery("select p from Player p")
+                .getResultList();
+        LOG.info("getAllPlayers: size = {}, players_Ovrs = {}", players.size(), players.stream()
+                .map(Player::getOvr)
+                .collect(Collectors.toList()));
+        return players;
     }
 }
