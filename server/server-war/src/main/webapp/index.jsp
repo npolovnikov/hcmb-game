@@ -8,9 +8,18 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
   <head>
-    <title>$Title$</title>
+    <title>Hockey Mobile</title>
   </head>
   <body>
-  $END$
+    <button type="submit" onclick="createRandomPlayer()">Generate</button>
   </body>
+  <script>
+    function createRandomPlayer() {
+        var xhttp = new XMLHttpRequest();
+        xhttp.open("GET", "/server/api/players/create", true);
+        xhttp.setRequestHeader("Content-type", "application/json");
+        xhttp.send();
+        var response = JSON.parse(xhttp.responseText);
+    }
+  </script>
 </html>
