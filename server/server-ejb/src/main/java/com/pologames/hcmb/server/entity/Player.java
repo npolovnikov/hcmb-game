@@ -4,8 +4,6 @@ import com.pologames.hcmb.server.pojo.PlayerUtils;
 import com.pologames.hcmb.server.pojo.PositionEnum;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 /**
  * Описание игрока
@@ -36,16 +34,12 @@ public class Player extends PlayerBase {
      * Позиция
      */
     @Column(nullable = false, length = 1)
-    @NotNull(message = "Позиция не может быть пустой")
-    @Size(min = 1, max = 1, message = "Размер от 1 до 1")
     private PositionEnum position;
 
     /**
      * Талант
      */
     @Column(nullable = false)
-    @NotNull(message = "Талант не может быть пустой")
-    @Size(min = 1, max = 1, message = "Размер от 1 до 1")
     private int talent;
 
     public Integer getId() {

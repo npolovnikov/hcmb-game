@@ -1,9 +1,9 @@
 package com.pologames.hcmb.server.entity;
 
-import com.pologames.hcmb.server.pojo.PlayerUtils;
-
 import javax.persistence.Column;
+import javax.persistence.MappedSuperclass;
 
+@MappedSuperclass
 public abstract class PlayerBase {
 
     //GK
