@@ -1,18 +1,19 @@
 package com.pologames.hcmb.server.pojo;
 
 import com.pologames.hcmb.server.entity.Player;
+import com.pologames.hcmb.server.entity.PlayerBase;
 
 import java.util.Random;
 
 public class PlayerUtils {
 
-    public static int ovr(Player player) {
-        switch (player.getPosition()) {
-            case G: return ovrG(player);
-            case D: return ovrD(player);
+    public static int ovr(PlayerBase playerBase, PositionEnum positionEnum) {
+        switch (positionEnum) {
+            case G: return ovrG(playerBase);
+            case D: return ovrD(playerBase);
             case L:
             case R:
-            case C: return ovrС(player);
+            case C: return ovrС(playerBase);
         }
         return 0;
     }
@@ -26,6 +27,7 @@ public class PlayerUtils {
     public static Player createRandomG(int minOvr, int maxOvr) {
         final Player playerG = new Player();
         playerG.setPosition(PositionEnum.G);
+        playerG.setTalent(randomInt(0, 10));
 
         //Главное для вратаря
         playerG.setAgility(randomInt(minOvr - 5, maxOvr + 5));
@@ -82,6 +84,7 @@ public class PlayerUtils {
     public static Player createRandomD(int minOvr, int maxOvr) {
         final Player playerD = new Player();
         playerD.setPosition(PositionEnum.D);
+        playerD.setTalent(randomInt(0, 10));
 
         //Главное для защитника
         playerD.setAcceleration(randomInt(minOvr - 5, maxOvr + 5));
@@ -161,6 +164,7 @@ public class PlayerUtils {
     public static Player createRandomC(int minOvr, int maxOvr) {
         final Player playerC = new Player();
         playerC.setPosition(PositionEnum.C);
+        playerC.setTalent(randomInt(0, 10));
 
         //Главное для напа
         playerC.setStapShotAccuracy(randomInt(minOvr - 5, maxOvr + 5));
@@ -211,7 +215,7 @@ public class PlayerUtils {
         return new Random().nextInt(maxOvr - minOvr) + minOvr;
     }
 
-    private static int ovrG(Player player) {
+    private static int ovrG(PlayerBase player) {
         int sum_1 = player.getAgility() + player.getEndurance() + player.getAngles() + player.getBreakaway()
                 + player.getGlove() + player.getStick() + player.getReboundControl() + player.getRecover() + player.getPokeCkech();
         sum_1 *= 1.1;
@@ -224,7 +228,7 @@ public class PlayerUtils {
         return ((sum_1 / 9) + (sum_2 / 13)) / 2;
     }
 
-    private static int ovrD(Player player) {
+    private static int ovrD(PlayerBase player) {
         int sum_1 = player.getAcceleration() + player.getAgility() + player.getBalance() + player.getEndurance() + player.getSpeed()
                 + player.getDefAwareness() + player.getFaceOff() + player.getShotBlocking() + player.getStickChecking();
         sum_1 *= 1.1;
@@ -238,7 +242,7 @@ public class PlayerUtils {
         return ((sum_1 / 9) + (sum_2 / 15)) / 2;
     }
 
-    private static int ovrС(Player player) {
+    private static int ovrС(PlayerBase player) {
         int sum_1 = player.getStapShotAccuracy() + player.getStapShotPower() + player.getWristShotAccuracy() + player.getWristShotPower()
                 + player.getAcceleration() + player.getAgility() + player.getBalance() + player.getEndurance() + player.getSpeed();
         sum_1 *= 1.1;

@@ -11,7 +11,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import java.util.List;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 import static com.pologames.hcmb.server.pojo.PlayerUtils.*;
@@ -29,7 +28,7 @@ public class PlayerManager {
 
     public Player createRandomPlayer(int minOvr, int maxOvr) {
         LOG.info("createRandomPlayer: start. min = {}, max = {}", minOvr, maxOvr);
-        final PositionEnum positionEnum = PositionEnum.G;
+        final PositionEnum positionEnum = PositionEnum.random();
         LOG.info("Position: {}", positionEnum);
 
         final Player player;
