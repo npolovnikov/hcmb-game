@@ -31,7 +31,7 @@ public class PlayerCard extends PlayerBase {
     /**
      * Ссылка на статистику карточки
      */
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "PLAYER_STATISTIC_ID", nullable = false)
     private PlayerStatistic statistics;
 

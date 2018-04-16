@@ -14,6 +14,12 @@ public class Gamer {
     private Integer id;
 
     /**
+     * Ник
+     */
+    @Column
+    private String nickname;
+
+    /**
      * Количество серебрянных монет
      */
     @Column
@@ -40,7 +46,7 @@ public class Gamer {
     /**
      * Статистика матчей
      */
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "GAMER_STATISTIC_ID", nullable = false)
     private GamerStatistic statistics;
 
@@ -50,6 +56,14 @@ public class Gamer {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public String getNickname() {
+        return nickname;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
     }
 
     public long getMoneySilver() {
@@ -96,6 +110,7 @@ public class Gamer {
     public String toString() {
         return "Gamer{" +
                 "id=" + id +
+                ", nickname=" + nickname +
                 ", moneySilver=" + moneySilver +
                 ", moneyGold=" + moneyGold +
                 ", stadiumId=" + stadiumId +
