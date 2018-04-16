@@ -82,10 +82,6 @@ public class Player extends PlayerBase {
         this.talent = talent;
     }
 
-    public int getOvr(){
-        return PlayerUtils.ovr(this, position);
-    }
-
     @Override
     public String toString() {
         return "Player{" +

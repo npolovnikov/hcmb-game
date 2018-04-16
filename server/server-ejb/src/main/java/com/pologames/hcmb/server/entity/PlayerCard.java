@@ -1,6 +1,6 @@
 package com.pologames.hcmb.server.entity;
 
-import com.pologames.hcmb.server.pojo.PlayerUtils;
+import com.pologames.hcmb.server.pojo.UnitEnum;
 
 import javax.persistence.*;
 
@@ -24,14 +24,28 @@ public class PlayerCard extends PlayerBase {
     /**
      * Ссылка на владельца карточки
      */
-    private int gamerId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "GAMER_ID", nullable = false)
+    private Gamer gamer;
 
     /**
      * Ссылка на статистику карточки
      */
-    @ManyToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "PLAYER_STATISTIC_ID", nullable = false)
     private PlayerStatistic statistics;
+
+    /**
+     * Стоимость игрока, за которую заплатил владелец
+     */
+    @Column
+    private long latestPrice;
+
+    /**
+     * Звено
+     */
+    @Column(nullable = false)
+    private UnitEnum unit;
 
     public Integer getId() {
         return id;
@@ -49,12 +63,12 @@ public class PlayerCard extends PlayerBase {
         this.player = player;
     }
 
-    public int getGamerId() {
-        return gamerId;
+    public Gamer getGamer() {
+        return gamer;
     }
 
-    public void setGamerId(int gamerId) {
-        this.gamerId = gamerId;
+    public void setGamer(Gamer gamer) {
+        this.gamer = gamer;
     }
 
     public PlayerStatistic getStatistics() {
@@ -65,18 +79,31 @@ public class PlayerCard extends PlayerBase {
         this.statistics = statistics;
     }
 
-    public int getOvr(){
-        return PlayerUtils.ovr(this, player.getPosition());
+    public long getLatestPrice() {
+        return latestPrice;
+    }
+
+    public void setLatestPrice(long latestPrice) {
+        this.latestPrice = latestPrice;
+    }
+
+    public UnitEnum getUnit() {
+        return unit;
+    }
+
+    public void setUnit(UnitEnum unit) {
+        this.unit = unit;
     }
 
     @Override
     public String toString() {
         return "PlayerCard{" +
-                super.toString() +
-                ", id=" + id +
+                "id=" + id +
                 ", player=" + player +
-                ", gamerId=" + gamerId +
+                ", gamer=" + gamer +
                 ", statistics=" + statistics +
-                '}';
+                ", latestPrice=" + latestPrice +
+                ", unit=" + unit +
+                "} " + super.toString();
     }
 }

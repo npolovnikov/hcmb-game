@@ -6,6 +6,9 @@ import javax.persistence.MappedSuperclass;
 @MappedSuperclass
 public abstract class PlayerBase {
 
+    @Column
+    private int ovr;
+
     //GK
     //Reflex
     /**
@@ -202,6 +205,14 @@ public abstract class PlayerBase {
      */
     @Column
     private int strength;
+
+    public int getOvr() {
+        return ovr;
+    }
+
+    public void setOvr(int ovr) {
+        this.ovr = ovr;
+    }
 
     public int getAngles() {
         return angles;
@@ -454,7 +465,8 @@ public abstract class PlayerBase {
     @Override
     public String toString() {
         return "PlayerBase{" +
-                "angles=" + angles +
+                "ovr=" + ovr +
+                ", angles=" + angles +
                 ", breakaway=" + breakaway +
                 ", glove=" + glove +
                 ", stick=" + stick +
