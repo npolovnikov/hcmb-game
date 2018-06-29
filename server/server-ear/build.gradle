@@ -27,6 +27,6 @@ ear {
       initializeInOrder = true
       displayName = "Hockey Mobile Server Ear"  // defaults to project.name
       module("server-ejb-" + project.version + ".jar", "ejb")  // won't deploy as my.jar isn't deploy dependency
-      webModule("server-war-" + project.version + ".war", "/server")  // won't deploy as my.war isn't deploy dependency
+      webModule("server-war-" + project.version + ".war", "/admin")  // won't deploy as my.war isn't deploy dependency
     }
 }

@@ -12,7 +12,11 @@ repositories {
 }
 
 dependencies {
-
     compileOnly project(':server:server-ejb')
     compileOnly 'javax:javaee-api:7.0'
+    compile 'com.vaadin:vaadin-server:8.4.4'
+    compile 'com.vaadin:vaadin-push:8.4.4'
+    compile 'com.vaadin:vaadin-themes:8.4.4'
+    compile 'com.vaadin:vaadin-client-compiled:8.4.4'
+
 }
