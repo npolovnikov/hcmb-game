@@ -1,16 +1,14 @@
 package com.pologames.hcmb.admin;
 
-import javax.servlet.annotation.WebServlet;
 
 import com.vaadin.annotations.Theme;
-import com.vaadin.annotations.VaadinServletConfiguration;
-import com.vaadin.server.VaadinRequest;
-import com.vaadin.server.VaadinServlet;
-import com.vaadin.ui.Button;
-import com.vaadin.ui.Label;
-import com.vaadin.ui.TextField;
+import com.vaadin.navigator.Navigator;
+import com.vaadin.server.*;
 import com.vaadin.ui.UI;
-import com.vaadin.ui.VerticalLayout;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.util.Locale;
 
 /**
  * This UI is the application entry point. A UI may either represent a browser window 
@@ -21,27 +19,66 @@ import com.vaadin.ui.VerticalLayout;
  */
 @Theme("mytheme")
 public class AdminUI extends UI {
+    private final static Logger LOG = LoggerFactory.getLogger(AdminUI.class);
 
     @Override
     protected void init(VaadinRequest vaadinRequest) {
-        final VerticalLayout layout = new VerticalLayout();
-        
-        final TextField name = new TextField();
-        name.setCaption("Type your name here:");
 
-        Button button = new Button("Click Me");
-        button.addClickListener(e -> {
-            layout.addComponent(new Label("Thanks " + name.getValue() 
-                    + ", it works!"));
-        });
-        
-        layout.addComponents(name, button);
-        
-        setContent(layout);
-    }
+        Page.getCurrent().setTitle("АРМ Администратор");
 
-    @WebServlet(urlPatterns = "/*", name = "AdminUIServlet", asyncSupported = true)
-    @VaadinServletConfiguration(ui = AdminUI.class, productionMode = false)
-    public static class AdminUIServlet extends VaadinServlet {
+        final WebBrowser browser = Page.getCurrent().getWebBrowser();
+        final StringBuilder bldr = new StringBuilder(100);
+        bldr.append("New session: ");
+        bldr.append("IP address='").append(browser.getAddress()).append("', ");
+        bldr.append("paltform='").append(browser.getBrowserApplication()).append("', ");
+        bldr.append("version='").append(browser.getBrowserMajorVersion()).append('.').append(browser.getBrowserMinorVersion()).append("', ");
+        bldr.append("width='").append(browser.getScreenWidth()).append("', ");
+        bldr.append("height='").append(browser.getScreenHeight()).append('\'');
+        LOG.info(bldr.toString());
+
+        setLocale(new Locale("ru", "RU"));
+
+        //Настроим системные сообщения
+        getReconnectDialogConfiguration().setDialogText("Соединение с сервером потеряно, ожидается восстановление ...");
+        VaadinService.getCurrent().setSystemMessagesProvider(
+                new SystemMessagesProvider() {
+                    private static final long serialVersionUID = 5052645886090498888L;
+                    @Override
+                    public SystemMessages getSystemMessages(final SystemMessagesInfo systemMessagesInfo) {
+                        final CustomizedSystemMessages messages = new CustomizedSystemMessages();
+                        messages.setSessionExpiredCaption("Сессия завершена");
+                        messages.setSessionExpiredMessage("Нажмите здесь или кнопку ESC для продолжения");
+                        messages.setSessionExpiredNotificationEnabled(true);
+                        return messages;
+                    }
+                });
+
+        //Зарегистрируем 2 view - страница авторизации и UI администрирования
+        final Navigator navigator = new Navigator(this, this);
+//        navigator.addView(LoginView.NAME, LoginView.class);
+        navigator.addView(AdministratorView.NAME, AdministratorView.class);
+
+//        getNavigator().addViewChangeListener(new ViewChangeListener() {
+//            private static final long serialVersionUID = -7910182453780421758L;
+//            @Override
+//            public boolean beforeViewChange(final ViewChangeListener.ViewChangeEvent event) {
+//                boolean isLoggedIn = getSession().getAttribute("user") != null;
+//                boolean isLoginView = event.getNewView() instanceof LoginView;
+//                if (!isLoggedIn && !isLoginView) {
+//                    getNavigator().navigateTo(LoginView.NAME);
+//                    return false;
+//                } else if (isLoggedIn && isLoginView) {
+//                    return false;
+//                }
+//                return true;
+//            }
+//
+//            @Override
+//            public void afterViewChange(final ViewChangeListener.ViewChangeEvent event) {
+//                //Ничего не делаем
+//            }
+//        });
+
+        navigator.navigateTo(AdministratorView.NAME);
     }
 }

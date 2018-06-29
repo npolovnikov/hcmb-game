@@ -11,9 +11,17 @@ repositories {
     mavenCentral()
 }
 
+war {
+    from('src/main/java') {
+        include '**/*.html'
+    }
+}
+
 dependencies {
     compileOnly project(':server:server-ejb')
     compileOnly 'javax:javaee-api:7.0'
+    compileOnly 'org.slf4j:slf4j-api:1.7.25'
+
     compile 'com.vaadin:vaadin-server:8.4.4'
     compile 'com.vaadin:vaadin-push:8.4.4'
     compile 'com.vaadin:vaadin-themes:8.4.4'
