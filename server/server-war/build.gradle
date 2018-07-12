@@ -9,6 +9,12 @@ sourceCompatibility = 1.8
 
 repositories {
     mavenCentral()
+    maven {
+        url 'https://maven.vaadin.com/vaadin-prereleases'
+    }
+    maven {
+        url 'http://maven.vaadin.com/vaadin-addons'
+    }
 }
 
 war {
@@ -22,9 +28,6 @@ dependencies {
     compileOnly 'javax:javaee-api:7.0'
     compileOnly 'org.slf4j:slf4j-api:1.7.25'
 
-    compile 'com.vaadin:vaadin-server:8.4.4'
-    compile 'com.vaadin:vaadin-push:8.4.4'
-    compile 'com.vaadin:vaadin-themes:8.4.4'
-    compile 'com.vaadin:vaadin-client-compiled:8.4.4'
-
+    compile 'com.vaadin:vaadin-bom:10.0.1'
+    compile 'com.vaadin:vaadin-core:10.0.1'
 }
